@@ -5,23 +5,26 @@ date: "11/18/2021"
 output: html_document
 dataset:
   citation:
-      title: "NEW Test dataset"
+      title: "Social Data Commons: Health, Behavior, Diet: Staple Food Basket Gravity Models"
       subtitle: ""
-      dsDescriptionValue: "Virginia Standards of Learning Test Scores collected by the Virginia Department of Education (VDOE)"
+      dsDescriptionValue: "Gravity Model Index Scores using Grocery Retailers with Online Presence"
       subject: "Social Sciences (Ex: Education, Politics, Sociology, Economics, Psychology)"
-      productionDate: "2021-11-17"
-      timePeriodCoveredStart: "2015-01-01"
-      timePeriodCoveredEnd: "2021-01-01"
+      productionDate: "2022-02-02"
+      timePeriodCoveredStart: "2021-01-01"
+      timePeriodCoveredEnd: "2022-02-02"
       dataSources:
-        - "ACS"
-        - "County Health Rankings"
+        - "Giant"
+        - "Harris Teeter"
+        - "Target"
+        - "Whole Foods"
+        - "Lidl"
+        - "Aldi"
+        - "Safeway"
       author:
-        - authorName: "Schroeder, Aaron"
+        - authorName: "Alerte, Zachary"
           authorAffiliation: "Univeristy of Virginia"
-        - authorName: "Charankevich, Hanna"
+        - authorName: "Aaron, Schroeder"
           authorAffiliation: "Univeristy of Virginia"
-        - authorName: "Niagra, Bob"
-          authorAffiliation: "Univeristy of Waterloo"
       datasetContact:
         - datasetContactEmail: "ads7fg@virginia.edu"
           datasetContactName: "Schroeder, Aaron"
@@ -29,9 +32,10 @@ dataset:
     geographicCoverage:
       country: "United States"
       state: "Virginia"
+      county: "Arlington"
     geographicUnit:
-      - "State Health District"
-      - "County"
+      - "Block Group"
+      - "Civic Association"
 ---
 
 ```{r setup, include=FALSE}

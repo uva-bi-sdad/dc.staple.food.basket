@@ -1,0 +1,185 @@
+---
+title: "Basket_Builder"
+output: html_document
+---
+
+
+```{r}
+library(sf)
+library(tidyverse)
+library(tmap)
+library(tmaptools)
+library(tidycensus)
+library(tigris)
+library(rmapshaper)
+```
+
+
+```{r}
+con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+arl_bg_la_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_bg_sdad_2021_latino_basket_gravity_model")
+arl_ca_la_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_civic_sdad_2021_latino_basket_gravity_model")
+arl_bg_ea_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_bg_sdad_2021_east_african_basket_gravity_model")
+arl_ca_ea_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_civic_sdad_2021_east_african_basket_gravity_model")
+dbDisconnect(con)
+
+# arl_bg_la_basket
+arl_ca_la_basket$geoid <- str_replace_all(tolower(arl_ca_la_basket$region_name), " ", "_")
+arl_ca_ea_basket$geoid <- str_replace_all(tolower(arl_ca_ea_basket$region_name), " ", "_")
+# arl_bg_ea_basket
+# arl_ca_ea_basket
+
+# what are geoids for arlington civic associations? or for any neighborhoods for that matter... (do we need them... - maybe, idk - might be good for redundance???)
+# replace(str_replace((str_replace_all(arl_ca_la_basket$region_name, " - ", " ")), "-", ""), ""
+# 
+# unique(paste0("51013_va013cc_", str_replace_all(tolower(str_replace_all(arl_ca_la_basket$region_name, " - ", " ")), " ", "_")))
+
+ca_names_csv <- read.csv("~/Food Equity/va_catr_sdad_2021_mrfei.csv")
+arl_ca_la_basket2 <- left_join(arl_ca_la_basket, ca_names_csv[, c("region_name", "geoid")], by = "region_name") %>%
+  select(-geoid.x) %>% rename(geoid = geoid.y) %>%
+  relocate("geoid", "region_type", "region_name", "year", "measure", "value", "measure_type", "measure_units")
+
+arl_ca_ea_basket2 <- left_join(arl_ca_ea_basket, ca_names_csv[, c("region_name", "geoid")], by = "region_name") %>%
+  select(-geoid.x) %>% rename(geoid = geoid.y) %>%
+  relocate("geoid", "region_type", "region_name", "year", "measure", "value", "measure_type", "measure_units")
+
+con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+dc_dbWriteTable(con, "dc_working", "va_013_civic_sdad_2021_latino_basket_gravity_model_update", arl_ca_la_basket2)
+dc_dbWriteTable(con, "dc_working", "va_013_civic_sdad_2021_east_african_basket_gravity_model_update", arl_ca_ea_basket2)
+dbDisconnect(con)
+
+# length(unique(arl_ca_ea_basket2$measure))
+```
+
+- worried about long-term sustainability of something like this
+- the idea is interesting and maybe it can be incorporated into a paper
+- but in its current form, I wouldn't be comfortable with this having too large an impact on policy - so many factors that are relevant that we simply aren't accounting for (smaller stores that service specific groups - would you buy cultural items at Giant, HT, etc, so does it even really matter?)
+
+
+```{r}
+arl_bg_ea_basket2 <- left_join(ar.bg[, c("GEOID", "bg_popE")], arl_bg_ea_basket, by = c("GEOID" = "geoid")) %>%
+  mutate(value = ifelse(bg_popE < 5, NA, value))
+
+tm_shape(arl_bg_ea_basket2[arl_bg_ea_basket2$measure == "all_ecdf_idx",], unit = "mi") +
+  tm_polygons(col = 'value',
+              style = 'fixed',
+              palette = 'Blues',
+              border.alpha = 0,
+              title = 'Percentile Rank',
+              breaks = c(0, 20, 40, 60, 80, 100)) +
+  tm_shape(ar.bg) +
+  tm_polygons(alpha = 0) +
+  tm_scale_bar(position = c('left', 'top')) +
+  tm_layout(main.title = 'East African Staple Food Item Access',
+            main.title.size = 0.95, frame = F,
+            legend.outside = T, legend.outside.position = 'right')
+```
+
+
+```{r}
+tm_shape(arl_bg_ea_basket2[arl_bg_ea_basket2$measure == "teff_ecdf_idx",], unit = "mi") +
+  tm_polygons(col = 'value',
+              style = 'fixed',
+              palette = 'Blues',
+              border.alpha = 0,
+              title = 'Percentile Rank',
+              breaks = c(0, 20, 40, 60, 80, 100)) +
+  tm_shape(ar.bg) +
+  tm_polygons(alpha = 0) +
+  tm_scale_bar(position = c('left', 'top')) +
+  tm_layout(main.title = 'Teff Access',
+            main.title.size = 0.95, frame = F,
+            legend.outside = T, legend.outside.position = 'right')
+
+tm_shape(arl_bg_ea_basket2[arl_bg_ea_basket2$measure == "favabeans_ecdf_idx",], unit = "mi") +
+  tm_polygons(col = 'value',
+              style = 'fixed',
+              palette = 'Blues',
+              border.alpha = 0,
+              title = 'Percentile Rank',
+              breaks = c(0, 20, 40, 60, 80, 100)) +
+  tm_shape(ar.bg) +
+  tm_polygons(alpha = 0) +
+  tm_scale_bar(position = c('left', 'top')) +
+  tm_layout(main.title = 'Fava Beans Access',
+            main.title.size = 0.95, frame = F,
+            legend.outside = T, legend.outside.position = 'right')
+```
+
+
+```{r}
+d2 <- st_read("arlington_stores.shp")
+
+ar.bg <- get_acs(geography = "block group",
+                 year = 2019,
+                 variables = c(bg_pop = "B01003_001"),
+                 state = "VA",
+                 county = "013",
+                 survey = "acs5",
+                 output = "wide",
+                 geometry = T)
+
+ar.bg.centroid <- ar.bg %>% st_centroid()
+d2.2 <- d2[-c(61),]
+d2.2 <- d2.2 %>% st_set_crs(st_crs(ar.bg.centroid))
+
+d3 <- left_join(d2.2[, c("address")], eastaf.data, by = "address")
+```
+
+
+```{r}
+tm_shape(arl_bg_ea_basket2[arl_bg_ea_basket2$measure == "all_ecdf_idx",], unit = "mi") +
+  tm_polygons(col = "value",
+              style = "fixed",
+              palette = "Blues",
+              border.alpha = 0,
+              title = "Percentile Rank",
+              breaks = c(0, 20, 40, 60, 80, 100)) +
+  tm_shape(ar.bg) +
+  tm_polygons(alpha = 0) +
+  tm_shape(d3[d3$num_items > 0,]) +
+  tm_dots(col = "pink", alpha = 0.75, size = 0.5) + 
+  tm_scale_bar(position = c("left", "top")) +
+  tm_layout(main.title = "East African Staple Food Item Access",
+            main.title.size = 0.95,
+            frame = F,
+            legend.outside = T,
+            legend.outside.position = "right")
+
+tm_shape(arl_bg_ea_basket2[arl_bg_ea_basket2$measure == "teff_ecdf_idx",], unit = "mi") +
+  tm_polygons(col = 'value',
+              style = 'fixed',
+              palette = 'Blues',
+              border.alpha = 0,
+              title = 'Percentile Rank',
+              breaks = c(0, 20, 40, 60, 80, 100)) +
+  tm_shape(ar.bg) +
+  tm_polygons(alpha = 0) +
+  tm_shape(d3[d3$item.13 > 0,]) +
+  tm_dots(col = "pink", alpha = 0.75, size = 0.5) + 
+  tm_scale_bar(position = c('left', 'top')) +
+  tm_layout(main.title = 'Teff Access',
+            main.title.size = 0.95, frame = F,
+            legend.outside = T, legend.outside.position = 'right')
+
+tm_shape(arl_bg_ea_basket2[arl_bg_ea_basket2$measure == "favabeans_ecdf_idx",], unit = "mi") +
+  tm_polygons(col = 'value',
+              style = 'fixed',
+              palette = 'Blues',
+              border.alpha = 0,
+              title = 'Percentile Rank',
+              breaks = c(0, 20, 40, 60, 80, 100)) +
+  tm_shape(ar.bg) +
+  tm_polygons(alpha = 0) +
+  tm_shape(d3[d3$item.6 > 0,]) +
+  tm_dots(col = "pink", alpha = 0.75, size = 0.5) + 
+  tm_scale_bar(position = c('left', 'top')) +
+  tm_layout(main.title = 'Fava Beans Access',
+            main.title.size = 0.95, frame = F,
+            legend.outside = T, legend.outside.position = 'right')
+```
+
+
+
+
+
