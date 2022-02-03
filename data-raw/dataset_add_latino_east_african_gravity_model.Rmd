@@ -23,12 +23,15 @@ Ex: database_schema_name.database_table_name: file_name_that_created_this_table.
 ```{r data}
 
 # Ex database_table_name: "va_hd_vdoe_2019_2021_3rd_grade_mean_median_read_score"
-table_names = c("database_table_name_1", "database_table_name_2") 
+table_names = c("va_013_bg_sdad_2021_latino_basket_gravity_model",
+                "va_013_civic_sdad_2021_latino_basket_gravity_model_update",
+                "va_013_bg_sdad_2021_east_african_basket_gravity_model",
+                "va_013_civic_sdad_2021_east_african_basket_gravity_model") 
     
 con <- get_db_conn()
 
 dat_file_name <- table_names[1]
-db_schema_name <- "database_schema_name"  # Ex database schema_name: dc_education_training
+db_schema_name <- "dc_working"  # Ex database schema_name: dc_education_training
 all_geos_dat <- DBI::dbReadTable(con, c(db_schema_name, dat_file_name))  
 
 if (length(table_names) > 1)
@@ -44,7 +47,7 @@ if (length(table_names) > 1)
 
 DBI::dbDisconnect(con)
 
-all_geos_file_name <- "new_file_name"  #Ex: "va_vdoe_2019_2021_3rd_grade_mean_median_read_score"
+all_geos_file_name <- "va_013_cabg_sdad_2021_latino_east_african_gravity_models"  #Ex: "va_vdoe_2019_2021_3rd_grade_mean_median_read_score"
 assign(all_geos_file_name, all_geos_dat)
 ```
 
