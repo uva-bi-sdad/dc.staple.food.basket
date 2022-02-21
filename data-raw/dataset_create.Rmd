@@ -5,9 +5,9 @@ date: "11/18/2021"
 output: html_document
 dataset:
   citation:
-      title: "Social Data Commons: Health, Behavior, Diet: Staple Food Basket Gravity Models"
+      title: "Social Data Commons: Health, Behavior, Diet: Staple Food Basket"
       subtitle: ""
-      dsDescriptionValue: "Gravity Model Index Scores using Grocery Retailers with Online Presence"
+      dsDescriptionValue: "Gravity Model Index Scores using Grocery Retailers with Online Presence and more"
       subject: "Social Sciences (Ex: Education, Politics, Sociology, Economics, Psychology)"
       productionDate: "2022-02-02"
       timePeriodCoveredStart: "2021-01-01"
@@ -20,6 +20,7 @@ dataset:
         - "Lidl"
         - "Aldi"
         - "Safeway"
+        - "OSRM"
       author:
         - authorName: "Alerte, Zachary"
           authorAffiliation: "Univeristy of Virginia"
@@ -34,8 +35,11 @@ dataset:
       state: "Virginia"
       county: "Arlington"
     geographicUnit:
+      - "County"
+      - "Census Tract"
       - "Block Group"
       - "Civic Association"
+      
 ---
 
 ```{r setup, include=FALSE}

@@ -1,6 +1,6 @@
 Package: dc.staple.food.basket
 Type: Package
-Title: Social Data Commons: Health, Behavior, Diet: Staple Food Basket Gravity Models
+Title: Social Data Commons: Health, Behavior, Diet: Staple Food Basket
 Version: 0.1.0
 Authors@R: c(
     person("Social and Decision Analytics Division (SDAD), Biocomplexity Institute, University of Virginia", role = c("aut", "cre")),
