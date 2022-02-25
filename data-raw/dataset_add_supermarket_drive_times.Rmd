@@ -17,21 +17,19 @@ dataset_doi <- readLines(here::here("data/dataset_doi"))[1]
 
 ## Code you used to create dataset - LIST BELOW
 
-dc_working.va_013_bg_sdad_2021_latino_basket_gravity_model, dc_working.va_013_civic_sdad_2021_latino_basket_gravity_model_update, dc_working.va_013_bg_sdad_2021_east_african_basket_gravity_model, dc_working.va_013_civic_sdad_2021_east_african_basket_gravity_model: gravity_model.RMD (Basket_Builder.RMD has formatting to new civic association)
+dc_health_behavior_diet.va_tr_osrm_2021_supermarket_drive_times, dc_health_behavior_diet.va_ct_osrm_2021_supermarket_drive_times: MISSING (Cesar has locations from OSRM and way to pull them down)
 
 
 ```{r data}
 
 # Ex database_table_name: "va_hd_vdoe_2019_2021_3rd_grade_mean_median_read_score"
-table_names = c("va_013_bg_sdad_2021_latino_basket_gravity_model",
-                "va_013_civic_sdad_2021_latino_basket_gravity_model_update",
-                "va_013_bg_sdad_2021_east_african_basket_gravity_model",
-                "va_013_civic_sdad_2021_east_african_basket_gravity_model_update") 
+table_names = c("va_tr_osrm_2021_supermarket_drive_times",
+                "va_ct_osrm_2021_supermarket_drive_times") 
     
 con <- get_db_conn()
 
 dat_file_name <- table_names[1]
-db_schema_name <- "dc_working"  # Ex database schema_name: dc_education_training
+db_schema_name <- "dc_health_behavior_diet"  # Ex database schema_name: dc_education_training
 all_geos_dat <- DBI::dbReadTable(con, c(db_schema_name, dat_file_name))  
 
 if (length(table_names) > 1)
@@ -47,7 +45,7 @@ if (length(table_names) > 1)
 
 DBI::dbDisconnect(con)
 
-all_geos_file_name <- "va_013_cabg_sdad_2021_latino_east_african_gravity_models"  #Ex: "va_vdoe_2019_2021_3rd_grade_mean_median_read_score"
+all_geos_file_name <- "va_cttr_osrm_2021_supermarket_drive_times"  #Ex: "va_vdoe_2019_2021_3rd_grade_mean_median_read_score"
 assign(all_geos_file_name, all_geos_dat)
 ```
 

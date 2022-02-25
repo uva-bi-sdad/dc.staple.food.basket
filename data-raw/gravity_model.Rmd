@@ -3,6 +3,28 @@ title: "Milk_index_2"
 output: html_document
 ---
 
+# load packages
+
+```{r}
+library(sf)
+library(tidyverse)
+library(tmap)
+library(tmaptools)
+library(tigris)
+library(tidycensus)
+library(rmapshaper)
+library(matrixStats)
+library(SpatialAcc)
+library(reticulate)
+library(dplyr)
+
+library(tidygeocoder)
+library(readxl)
+library(data.table)
+```
+
+# giant data (obviously would want this to come from scraper, but ran into issues across the board)
+
 ```{r}
 # Giant
 giant_addys <- c("3115 Lee Hwy., Arlington, VA 22201", "3450 Washington Blvd., Arlington, VA 22201", "3336 Wisconsin Ave NW, Washington, DC 20016",
@@ -87,6 +109,7 @@ giant_present_matrix <- matrix(unlist(giant_present), ncol = 19, byrow = T)
 giant_prices_matrix <- matrix(unlist(giant_prices), ncol = 19, byrow = T)
 ```
 
+# harris teeter data
 
 ```{r}
 # HT
@@ -133,6 +156,7 @@ ht_present_matrix <- matrix(unlist(ht_present), ncol = 19, byrow = T)
 ht_prices_matrix <- matrix(unlist(ht_prices), ncol = 19, byrow = T)
 ```
 
+# safeway data
 
 ```{r}
 # Safeway
@@ -193,6 +217,7 @@ sw_present_matrix <- matrix(unlist(sw_present), ncol = 19, byrow = T)
 sw_prices_matrix <- matrix(unlist(sw_prices), ncol = 19, byrow = T)
 ```
 
+# aldi data
 
 ```{r}
 # Aldi
@@ -217,10 +242,9 @@ aldi_present_matrix <- matrix(unlist(aldi_present), ncol = 19, byrow = T)
 aldi_prices_matrix <- matrix(unlist(aldi_prices), ncol = 19, byrow = T)
 ```
 
+# target data
 
 ```{r}
-### NEED TO FINISH THIS ONE -  A BIT ANNOYING LOL
-
 # I don't think this is hitting exactly 5 miles out, but close enough (only site without distances - so using nearby cities)
 # Target
 target_addys <- c("740 N Glebe Rd., Arlington, VA 22203", "1500 Wilson Blvd., Rosslyn, VA 22209", "6100 Arlington Blvd., Falls Church, VA 22044",
@@ -259,6 +283,7 @@ target_present_matrix <- matrix(unlist(target_present), ncol = 19, byrow = T)
 target_prices_matrix <- matrix(unlist(target_prices), ncol = 19, byrow = T)
 ```
 
+# whole foods data
 
 ```{r}
 # Whole Foods
@@ -307,6 +332,7 @@ wf_present_matrix <- matrix(unlist(wf_present), ncol = 19, byrow = T)
 wf_prices_matrix <- matrix(unlist(wf_prices), ncol = 19, byrow = T)
 ```
 
+# lidl data
 
 ```{r}
 # Lidl
@@ -329,7 +355,7 @@ lidl_prices_matrix <- matrix(unlist(lidl_prices), ncol = 19, byrow = T)
 ```
 
 
-TODOS: sum up number of items per store; get locations; finish gravity model (and make specific plot for certain items!)
+# 
 
 ```{r}
 all_matrix <- rbind(giant_present_matrix, ht_present_matrix, sw_present_matrix, aldi_present_matrix, target_present_matrix, wf_present_matrix, lidl_present_matrix)
@@ -341,6 +367,7 @@ latinx.data <- data.frame(
   item = all_matrix)
 ```
 
+# 
 
 ```{r}
 # library(tidygeocoder)
@@ -357,7 +384,7 @@ latinx.data <- data.frame(
 #                coords = c("lon", "lat"))
 
 # latinx.data
-d2 <- st_read("arlington_stores.shp")
+d2 <- st_read("/project/biocomplexity/sdad/projects_data/mc/data_commons/dc_health_behavior_diet/arlington_stores.shp")
 ```
 
 
@@ -379,6 +406,7 @@ dist.mat <- st_distance(d2.2, ar.bg.centroid) %>%
     units::set_units(mi)
 ```
 
+# functions for gravity model
 
 ```{r}
 get_distance_matrix <- function(dist.mat, num_items)
@@ -436,6 +464,7 @@ make_arlington_plot <- function(idx.sf.avocado, num_items, title)
 }
 ```
 
+# make plots and get data
 
 ```{r}
 ### how do we visualize where these stores are located - explains why the map is different (could put points down where located)
@@ -462,6 +491,7 @@ make_arlington_plot(tomatillo.access, latinx.data$item.18, "Tomatillo Access")
 make_arlington_plot(nopalito.access, latinx.data$item.12, "Nopalito Access")
 ```
 
+# re-do at civic association level
 
 ```{r}
 con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
@@ -469,10 +499,11 @@ ar_civic_associations <- st_read(con, query = "SELECT * FROM dc_geographies.va_0
 dbDisconnect(con)
 
 ar.ca.centroid <- ar_civic_associations %>% st_centroid()
-d2.2 <- d2 %>% st_set_crs(st_crs(ar.ca.centroid))
+d2.2 <- d2[-c(61),] %>% st_set_crs(st_crs(ar.ca.centroid))
 dist.mat <- st_distance(d2.2, ar.ca.centroid) %>% units::set_units(mi)
 ```
 
+# new functions for civic association (probably could use the ones above, but ran into some issues)
 
 ```{r}
 get_distance_matrix2 <- function(dist.mat, num_items)
@@ -581,9 +612,8 @@ make_arlington_plot2_wo_points(nopalito.access, latinx.data$item.12, "Nopalito A
 
 ```
 
-
-
 # GETTING ACTUAL DRIVE TIMES
+
 ```{r}
 library(osrm)
 get_times <- function(demand, new_supply, transportation)
@@ -681,117 +711,6 @@ get_times_2 <- function(demand, new_supply, transportation)
 dist.mat2 <- get_times(ar.bg.centroid, d2.2[-c(61),], "car")
 ```
 
-
-```{r}
-### how do we visualize where these stores are located - explains why the map is different (could put points down where located)
-store_dist <- get_distance_matrix(dist.mat2, latinx.data$num_items)
-a <- get_stores_within_distance_of_bg(store_dist, ar.bg.centroid$GEOID, dist_mi = 15)
-all.access <- format_idx(a)
-
-store_dist <- get_distance_matrix(dist.mat2, latinx.data$item.1)
-a <- get_stores_within_distance_of_bg(store_dist, ar.bg.centroid$GEOID, dist_mi = 15)
-avocado.access <- format_idx(a)
-
-store_dist <- get_distance_matrix(dist.mat2, latinx.data$item.18)
-a <- get_stores_within_distance_of_bg(store_dist, ar.bg.centroid$GEOID, dist_mi = 15)
-tomatillo.access <- format_idx(a)
-
-store_dist <- get_distance_matrix(dist.mat2, latinx.data$item.12)
-a <- get_stores_within_distance_of_bg(store_dist, ar.bg.centroid$GEOID, dist_mi = 15)
-nopalito.access <- format_idx(a)
-
-make_arlington_plot(all.access, latinx.data$num_items, "Latinx Staple Food Items Access")
-make_arlington_plot(avocado.access, latinx.data$item.1, "Avocado Access")
-make_arlington_plot(idx.sf.tomatillo, latinx.data$item.18, "Tomatillo Access")
-make_arlington_plot(idx.sf.nopalito, latinx.data$item.12, "Nopalito Access")
-```
-
-# NEAREST PRICE???
-```{r}
-price_data <- data.table(store = unique(d2$Location), avocado_price, tomatillo_price, nopalito_price)
-price_dist_data <- merge(price_data, store_dist, by = "store")
-
-# but are the prices really accurate???
-price_dist_data %>%
-  select(-c(tomatillo_price, nopalito_price)) %>%
-  drop_na() %>%
-  group_by(bg) %>%
-  slice_min(crow_dist)
-
-price_dist_data %>%
-  select(-c(avocado_price, nopalito_price)) %>%
-  drop_na() %>%
-  group_by(bg) %>%
-  slice_min(crow_dist)
-
-price_dist_data %>%
-  select(-c(avocado_price, tomatillo_price)) %>%
-  drop_na() %>%
-  group_by(bg) %>%
-  slice_min(crow_dist)
-```
-
-
-```{r}
-ar.bg <- get_acs(geography = "block group",
-                 year = 2019,
-                 variables = c(bg_pop = "B01003_001"),
-                 state = "VA",
-                 county = "013",
-                 survey = "acs5",
-                 output = "wide",
-                 geometry = T)
-
-ar.bg.centroid <- ar.bg %>% st_centroid()
-d2.2 <- d2 %>%
-  st_set_crs(st_crs(ar.bg.centroid)) %>%
-  filter(!Store %in% c("Lidl", "Whole Foods")) %>%
-  group_by(Location) %>%
-  summarize(total_price = sum(Price))
-
-poop2 <- st_distance(d2.2, ar.bg.centroid) %>%
-    units::set_units(mi)
-d3 <- d2.2[apply( poop2, 2, which.min),]
-d4 <- d3 %>%
-  mutate(distance_in_miles = apply( poop2, 2, min),
-         GEOID = ar.bg$GEOID)
-
-d4$staple_price_index <- (d4$total_price - min(d4$total_price,na.rm = T)) / (max(d4$total_price, na.rm = T) - min(d4$total_price, na.rm = T)) * 100
-
-e <- left_join(ar.bg, st_drop_geometry(d4), by = "GEOID")
-tm_shape(e, unit = "mi") +
-  tm_polygons(col = "staple_price_index",
-              style = "fixed",
-              palette = "Blues",
-              border.alpha = 0,
-              title = "Index",
-              breaks = c(0, 20, 40, 60, 80, 100)) +
-  tm_shape(ar.bg) +
-  tm_polygons(alpha = 0) +
-  tm_scale_bar(position = c("left", "top")) +
-  tm_layout(main.title = "2021 Staple Price Index",
-            main.title.size = 0.95,
-            frame = F,
-            legend.outside = T,
-            legend.outside.position = "right")
-tm_shape(e, unit = "mi") +
-  tm_polygons(col = "distance_in_miles",
-              style = "fisher",
-              palette = "Blues",
-              border.alpha = 0,
-              title = "Distance (miles)",
-              breaks = c(0, 20, 50, 100, 150, 225)) +
-  tm_shape(ar.bg) +
-  tm_polygons(alpha = 0) +
-  tm_scale_bar(position = c("left", "top")) +
-  tm_layout(main.title = "2021 Distance to Closest Store",
-            main.title.size = 0.95,
-            frame = F,
-            legend.outside = T,
-            legend.outside.position = "right")
-
-e
-```
 
 
 ```{r}
@@ -987,14 +906,15 @@ all.access.final.bg <- b.all.access.all %>%
   mutate(year = "2021", measure_type = "index", measure_units = as.character(NA), region_type = "block group") %>%
   rename(region_name = NAME, geoid = GEOID) %>% 
   relocate("geoid", "region_type", "region_name", "year", "measure", "value", "measure_type", "measure_units")
-# 
+
+## send to db
 # con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
 # dc_dbWriteTable(con, "dc_working", "va_013_bg_sdad_2021_latino_basket_gravity_model", all.access.final.bg)
 # dbDisconnect(con)
 ```
 
-
-# LOOKING NOW AT EAST AFRICAN BASKET - I will do it today, but not looking forward to it
+### LOOKING NOW AT EAST AFRICAN BASKET
+# giant
 
 ```{r}
 # Giant
@@ -1021,7 +941,7 @@ giant_addys <- c("3115 Lee Hwy., Arlington, VA 22201", # 1
 # Red Chori Beans, Basmati Rice, Spaghetti Pasta, Teff, Tomato Sauce, Tuna
 
 ea_giant_present <- list(
-     c(T, T, T, T, T, F, T, F, T, F, T, T, T, T, T), # 1 - what type ot dried beans?? - the cheapest beans...
+     c(T, T, T, T, T, F, T, F, T, F, T, T, T, T, T), # 1 - what type ot dried beans?? - the cheapest beans?
      c(T, T, T, T, T, F, T, F, T, F, T, T, T, T, T), # 2
      c(T, T, T, T, T, F, T, F, T, F, T, T, T, T, T), # 3
      c(T, T, T, T, T, F, T, F, T, F, T, T, T, T, T), # 4
@@ -1077,6 +997,7 @@ ea_giant_present_matrix <- matrix(unlist(ea_giant_present), ncol = 15, byrow = T
 ea_giant_prices_matrix <- matrix(unlist(ea_giant_prices), ncol = 15, byrow = T)
 ```
 
+# harris teeter
 
 ```{r}
 # HT
@@ -1122,9 +1043,9 @@ ea_ht_present_matrix <- matrix(unlist(ea_ht_present), ncol = 15, byrow = T)
 ea_ht_prices_matrix <- matrix(unlist(ea_ht_prices), ncol = 15, byrow = T)
 ```
 
+# safeway
 
 ```{r}
-# TODO - FIX THIS TOMORROW AND FINISH WITH THE REST...
 # Safeway
 sw_addys <- c("3713 Lee Hwy., Arlington, VA 22207", # 1
               "2500 N Harrison St., Arlington, VA 22207", # 2
@@ -1186,6 +1107,7 @@ ea_sw_present_matrix <- matrix(unlist(ea_sw_present), ncol = 15, byrow = T)
 ea_sw_prices_matrix <- matrix(unlist(ea_sw_prices), ncol = 15, byrow = T)
 ```
 
+# aldi
 
 ```{r}
 # Aldi
@@ -1210,10 +1132,9 @@ ea_aldi_present_matrix <- matrix(unlist(ea_aldi_present), ncol = 15, byrow = T)
 ea_aldi_prices_matrix <- matrix(unlist(ea_aldi_prices), ncol = 15, byrow = T)
 ```
 
+# target
 
 ```{r}
-### NEED TO FINISH THIS ONE -  A BIT ANNOYING LOL
-
 # I don't think this is hitting exactly 5 miles out, but close enough (only site without distances - so using nearby cities)
 # Target
 target_addys <- c("740 N Glebe Rd., Arlington, VA 22203", # 1
@@ -1246,6 +1167,7 @@ ea_target_present_matrix <- matrix(unlist(ea_target_present), ncol = 15, byrow =
 ea_target_prices_matrix <- matrix(unlist(ea_target_prices), ncol = 15, byrow = T)
 ```
 
+# whole foods
 
 ```{r}
 # Whole Foods
@@ -1294,6 +1216,7 @@ ea_wf_present_matrix <- matrix(unlist(ea_wf_present), ncol = 15, byrow = T)
 ea_wf_prices_matrix <- matrix(unlist(ea_wf_prices), ncol = 15, byrow = T)
 ```
 
+# lidl
 
 ```{r}
 # Lidl
@@ -1316,8 +1239,7 @@ ea_lidl_present_matrix <- matrix(unlist(ea_lidl_present), ncol = 15, byrow = T)
 ea_lidl_prices_matrix <- matrix(unlist(ea_lidl_prices), ncol = 15, byrow = T)
 ```
 
-
-TODOS: sum up number of items per store; get locations; finish gravity model (and make specific plot for certain items!)
+# sum up number of items per store; get locations; finish gravity model (and make specific plot for certain items!)
 
 ```{r}
 ea_all_matrix <- rbind(ea_giant_present_matrix, ea_ht_present_matrix, ea_sw_present_matrix, ea_aldi_present_matrix, ea_target_present_matrix, ea_wf_present_matrix, ea_lidl_present_matrix)
@@ -1330,40 +1252,7 @@ eastaf.data <- data.frame(
 
 ```
 
-
-<!-- ```{r} -->
-<!-- library(tidygeocoder) -->
-
-<!-- # geocode addresses -->
-<!-- # installed google api key -->
-<!-- readRenviron("~/.Renviron") -->
-<!-- register_google(Sys.getenv("GOOGLEGEOCODE_API_KEY")) -->
-
-<!-- data.latlon <- geocode(latinx.data$address) -->
-<!-- d2 <- st_as_sf(cbind(latinx.data, data.latlon), -->
-<!--                coords = c("lon", "lat")) -->
-<!-- ``` -->
-
-
-<!-- ```{r} -->
-<!-- ar.bg <- get_acs(geography = "block group", -->
-<!--                  year = 2019, -->
-<!--                  variables = c(bg_pop = "B01003_001"), -->
-<!--                  state = "VA", -->
-<!--                  county = "013", -->
-<!--                  survey = "acs5", -->
-<!--                  output = "wide", -->
-<!--                  geometry = T) -->
-
-<!-- ar.bg.centroid <- ar.bg %>% st_centroid() -->
-<!-- d2.2 <- d2 %>% -->
-<!--   st_set_crs(st_crs(ar.bg.centroid)) -->
-
-<!-- dist.mat <- st_distance(d2.2, ar.bg.centroid) %>% -->
-<!--     units::set_units(mi) -->
-<!-- ``` -->
-
-
+# gravity model plot
 
 ```{r}
 ### how do we visualize where these stores are located - explains why the map is different (could put points down where located)
@@ -1390,6 +1279,7 @@ make_arlington_plot(all.access, eastaf.data$num_items, "East African Staple Food
 
 ```
 
+# make general plots
 
 ```{r}
 dist.mat2 <- get_times_2(ar.ca.centroid, d2.2, "car")
@@ -1401,6 +1291,7 @@ make_arlington_plot2(all.access, eastaf.data$num_items, "Latinx Staple Food Item
 make_arlington_plot2_wo_points(all.access, eastaf.data$num_items, "East African Staple Food Item Access")
 ```
 
+# get data for civic associations, east african staples
 
 ```{r}
 dist.mat2 <- get_times_2(ar.ca.centroid, d2.2, "car")
@@ -1485,8 +1376,8 @@ all.access.final.ca <- all.access.all %>%
 # dc_dbWriteTable(con, "dc_working", "va_013_civic_sdad_2021_east_african_basket_gravity_model", all.access.final.ca)
 # dbDisconnect(con)
 ```
+# getting data for block groups + east african basket
 
-# work on getting data for block groups AND for latino/a/x/e basket
 ```{r}
 dist.mat <- get_times(ar.bg.centroid, d2.2, "car")
 store_dist1.1 <- get_distance_matrix(dist.mat, eastaf.data$item.1)
@@ -1571,114 +1462,35 @@ all.access.final.bg <- b.all.access.all %>%
 # dbDisconnect(con)
 ```
 
-
-# NEAREST PRICE???
-```{r}
-price_data <- data.table(store = unique(d2$Location), avocado_price, tomatillo_price, nopalito_price)
-price_dist_data <- merge(price_data, store_dist, by = "store")
-
-# but are the prices really accurate???
-price_dist_data %>%
-  select(-c(tomatillo_price, nopalito_price)) %>%
-  drop_na() %>%
-  group_by(bg) %>%
-  slice_min(crow_dist)
-
-price_dist_data %>%
-  select(-c(avocado_price, nopalito_price)) %>%
-  drop_na() %>%
-  group_by(bg) %>%
-  slice_min(crow_dist)
-
-price_dist_data %>%
-  select(-c(avocado_price, tomatillo_price)) %>%
-  drop_na() %>%
-  group_by(bg) %>%
-  slice_min(crow_dist)
-```
-
+# correct the formatting of neighborhoods with the update
 
 ```{r}
-ar.bg <- get_acs(geography = "block group",
-                 year = 2019,
-                 variables = c(bg_pop = "B01003_001"),
-                 state = "VA",
-                 county = "013",
-                 survey = "acs5",
-                 output = "wide",
-                 geometry = T)
+con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+arl_bg_la_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_bg_sdad_2021_latino_basket_gravity_model")
+arl_ca_la_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_civic_sdad_2021_latino_basket_gravity_model")
+arl_bg_ea_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_bg_sdad_2021_east_african_basket_gravity_model")
+arl_ca_ea_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_civic_sdad_2021_east_african_basket_gravity_model")
+dbDisconnect(con)
 
-ar.bg.centroid <- ar.bg %>% st_centroid()
-d2.2 <- d2 %>%
-  st_set_crs(st_crs(ar.bg.centroid)) %>%
-  filter(!Store %in% c("Lidl", "Whole Foods")) %>%
-  group_by(Location) %>%
-  summarize(total_price = sum(Price))
+arl_ca_la_basket$geoid <- str_replace_all(tolower(arl_ca_la_basket$region_name), " ", "_")
+arl_ca_ea_basket$geoid <- str_replace_all(tolower(arl_ca_ea_basket$region_name), " ", "_")
 
-poop2 <- st_distance(d2.2, ar.bg.centroid) %>%
-    units::set_units(mi)
-d3 <- d2.2[apply( poop2, 2, which.min),]
-d4 <- d3 %>%
-  mutate(distance_in_miles = apply( poop2, 2, min),
-         GEOID = ar.bg$GEOID)
+ca_names_csv <- read.csv("/project/biocomplexity/sdad/projects_data/mc/data_commons/dc_health_behavior_diet/va_catr_sdad_2021_mrfei.csv")
+arl_ca_la_basket2 <- left_join(arl_ca_la_basket, ca_names_csv[, c("region_name", "geoid")], by = "region_name") %>%
+  select(-geoid.x) %>% rename(geoid = geoid.y) %>%
+  relocate("geoid", "region_type", "region_name", "year", "measure", "value", "measure_type", "measure_units")
 
-d4$staple_price_index <- (d4$total_price - min(d4$total_price,na.rm = T)) / (max(d4$total_price, na.rm = T) - min(d4$total_price, na.rm = T)) * 100
+arl_ca_ea_basket2 <- left_join(arl_ca_ea_basket, ca_names_csv[, c("region_name", "geoid")], by = "region_name") %>%
+  select(-geoid.x) %>% rename(geoid = geoid.y) %>%
+  relocate("geoid", "region_type", "region_name", "year", "measure", "value", "measure_type", "measure_units")
 
-e <- left_join(ar.bg, st_drop_geometry(d4), by = "GEOID")
-tm_shape(e, unit = "mi") +
-  tm_polygons(col = "staple_price_index",
-              style = "fixed",
-              palette = "Blues",
-              border.alpha = 0,
-              title = "Index",
-              breaks = c(0, 20, 40, 60, 80, 100)) +
-  tm_shape(ar.bg) +
-  tm_polygons(alpha = 0) +
-  tm_scale_bar(position = c("left", "top")) +
-  tm_layout(main.title = "2021 Staple Price Index",
-            main.title.size = 0.95,
-            frame = F,
-            legend.outside = T,
-            legend.outside.position = "right")
-tm_shape(e, unit = "mi") +
-  tm_polygons(col = "distance_in_miles",
-              style = "fisher",
-              palette = "Blues",
-              border.alpha = 0,
-              title = "Distance (miles)",
-              breaks = c(0, 20, 50, 100, 150, 225)) +
-  tm_shape(ar.bg) +
-  tm_polygons(alpha = 0) +
-  tm_scale_bar(position = c("left", "top")) +
-  tm_layout(main.title = "2021 Distance to Closest Store",
-            main.title.size = 0.95,
-            frame = F,
-            legend.outside = T,
-            legend.outside.position = "right")
+# con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+# dc_dbWriteTable(con, "dc_working", "va_013_civic_sdad_2021_latino_basket_gravity_model_update", arl_ca_la_basket2)
+# dc_dbWriteTable(con, "dc_working", "va_013_civic_sdad_2021_east_african_basket_gravity_model_update", arl_ca_ea_basket2)
+# dbDisconnect(con)
+
+# length(unique(arl_ca_ea_basket2$measure))
 ```
-
-
-probably want to get 4 equally priced goods for the index??
-
-
-
-
-
-
-
-
-
-
-
-
-probably want to get 4 equally priced goods for the index??
-
-
-
-
-
-
-
 
 
  
