@@ -17,7 +17,7 @@ dataset_doi <- readLines(here::here("data/dataset_doi"))[1]
 
 ## Code you used to create dataset - LIST BELOW
 
-dc_working.va_013_bg_sdad_2021_latino_basket_gravity_model, dc_working.va_013_civic_sdad_2021_latino_basket_gravity_model_update, dc_working.va_013_bg_sdad_2021_east_african_basket_gravity_model, dc_working.va_013_civic_sdad_2021_east_african_basket_gravity_model: Milk_index_2.RMD (Basket_Builder.RMD has formatting to new civic association)
+dc_working.va_013_bg_sdad_2021_latino_basket_gravity_model, dc_working.va_013_civic_sdad_2021_latino_basket_gravity_model_update, dc_working.va_013_bg_sdad_2021_east_african_basket_gravity_model, dc_working.va_013_civic_sdad_2021_east_african_basket_gravity_model: gravity_model.RMD (Basket_Builder.RMD has formatting to new civic association)
 
 
 ```{r data}
