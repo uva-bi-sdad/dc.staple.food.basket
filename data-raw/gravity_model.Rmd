@@ -622,7 +622,7 @@ get_times <- function(demand, new_supply, transportation)
   demand <- demand %>% mutate(lon = st_coordinates(demand)[,1], lat = st_coordinates(demand)[,2])
   
   # options for OSRM 
-  options(osrm.server = "http://104.248.112.16:5000/", osrm.profile = transportation)
+  options(osrm.server = Sys.getenv("OSRM_SERVER"), osrm.profile = transportation)
   
   # where do we get actual longitude-latitude data for the stores
   start.time <- Sys.time()
@@ -668,7 +668,7 @@ get_times_2 <- function(demand, new_supply, transportation)
   demand <- demand %>% mutate(lon = st_coordinates(demand)[,1], lat = st_coordinates(demand)[,2])
   
   # options for OSRM 
-  options(osrm.server = "http://104.248.112.16:5000/", osrm.profile = transportation)
+  options(osrm.server = Sys.getenv("OSRM_SERVER"), osrm.profile = transportation)
   
   # where do we get actual longitude-latitude data for the stores
   start.time <- Sys.time()
