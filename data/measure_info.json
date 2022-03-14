@@ -1,0 +1,92 @@
+{
+  "latino_east_african_gravity_models:avocado_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:avocado_ecdf_idx",
+    "measure": "avocado_ecdf_idx",
+    "type": "float",
+    "short_name": "Avocado access score",
+    "long_name": "Avocado access score (Empirical cumulative density function)",
+    "short_description": "Avocado access score by item availability using an empirical cumulative density function",
+    "long_description": "Avocado access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Avocado is defined as a Latino staple food by The Food Group",
+    "statement": "The avocado access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+  "latino_east_african_gravity_models:favabeans_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:favabeans_ecdf_idx",
+    "measure": "favabeans_ecdf_idx",
+    "type": "float",
+    "short_name": "Fava bean access score",
+    "long_name": "Fava bean access score (Empirical cumulative density function)",
+    "short_description": "Fava bean access score by item availability using an empirical cumulative density function",
+    "long_description": "Fava bean access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Fava beans is defined as an East African staple food by The Food Group",
+    "statement": "The fava bean access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+  "latino_east_african_gravity_models:nopalitos_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:nopalitos_ecdf_idx",
+    "measure": "nopalitos_ecdf_idxnopalitos_ecdf_idx",
+    "type": "float",
+    "short_name": "Nopalito access score",
+    "long_name": "Nopalito access score (Empirical cumulative density function)",
+    "short_description": "Nopalito access score by item availability using an empirical cumulative density function.",
+    "long_description": "Nopalito access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Nopalito is defined as a Latino staple food by The Food Group",
+    "statement": "The nopalito access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+  "latino_east_african_gravity_models:teff_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:teff_ecdf_idx",
+    "measure": "teff_ecdf_idx",
+    "type": "float",
+    "short_name": "Teff access score",
+    "long_name": "Teff access score (Empirical cumulative density function)",
+    "short_description": "Teff access score by item availability using an empirical cumulative density function",
+    "long_description": "Teff access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Teff is defined as an East African staple food by The Food Group.",
+    "statement": "The teff access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+  "latino_east_african_gravity_models:tomatillos_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:tomatillos_ecdf_idx",
+    "measure": "tomatillos_ecdf_idx",
+    "type": "float",
+    "short_name": "Tomatillo access score",
+    "long_name": "Tomatillo access score (Empirical cumulative density function)",
+    "short_description": "Tomatillo access score by item availability using an empirical cumulative density function",
+    "long_description": "Tomatillo access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Tomatillo is defined as a Latino staple food by The Food Group",
+    "statement": "The tomatillo access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  }
+}
