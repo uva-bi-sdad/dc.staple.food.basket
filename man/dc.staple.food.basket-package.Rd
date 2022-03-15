@@ -4,7 +4,7 @@
 \name{dc.staple.food.basket-package}
 \alias{dc.staple.food.basket}
 \alias{dc.staple.food.basket-package}
-\title{dc.staple.food.basket: Social Data Commons: Health, Behavior, Diet: Staple Food Basket Gravity Models}
+\title{dc.staple.food.basket: Social Data Commons: Health, Behavior, Diet: Staple Food Basket}
 \description{
 Allows user to easily get Staple Food Basket data from the SDAD Data Commons. Data can be provided directly or in a file.
 }

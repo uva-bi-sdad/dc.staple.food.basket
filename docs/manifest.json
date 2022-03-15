@@ -1,0 +1,27 @@
+{
+  "name": "dc.staple.food.basket",
+  "data": [
+    {
+      "name": [],
+      "variables": {},
+      "file": "new_file_name.csv.xz",
+      "size": 166868,
+      "md5": "74316669ccc3dfbe42d05dd7eb393d91"
+    },
+    {
+      "name": "latino_east_african_gravity_models",
+      "variables": ["avocado_idx", "avocado_norm_idx", "avocado_ecdf_idx", "beets_idx", "beets_norm_idx", "beets_ecdf_idx", "blackbeans_idx", "blackbeans_norm_idx", "blackbeans_ecdf_idx", "cheese_idx", "cheese_norm_idx", "cheese_ecdf_idx", "corntortillas_idx", "corntortillas_norm_idx", "corntortillas_ecdf_idx", "crackers_idx", "crackers_norm_idx", "crackers_ecdf_idx", "greenchiles_idx", "greenchiles_norm_idx", "greenchiles_ecdf_idx", "jalapenos_idx", "jalapenos_norm_idx", "jalapenos_ecdf_idx", "legumes_idx", "legumes_norm_idx", "legumes_ecdf_idx", "masa_idx", "masa_norm_idx", "masa_ecdf_idx", "mixedfruit_idx", "mixedfruit_norm_idx", "mixedfruit_ecdf_idx", "nopalitos_idx", "nopalitos_norm_idx", "nopalitos_ecdf_idx", "peppers_idx", "peppers_norm_idx", "peppers_ecdf_idx", "pintobeans_idx", "pintobeans_norm_idx", "pintobeans_ecdf_idx", "rice_idx", "rice_norm_idx", "rice_ecdf_idx", "salsa_idx", "salsa_norm_idx", "salsa_ecdf_idx", "squash_idx", "squash_norm_idx", "squash_ecdf_idx", "tomatillos_idx", "tomatillos_norm_idx", "tomatillos_ecdf_idx", "tomatoes_idx", "tomatoes_norm_idx", "tomatoes_ecdf_idx", "all_idx", "all_norm_idx", "all_ecdf_idx", "barley_idx", "barley_norm_idx", "barley_ecdf_idx", "currypowder_idx", "currypowder_norm_idx", "currypowder_ecdf_idx", "blackeyepeas_idx", "blackeyepeas_norm_idx", "blackeyepeas_ecdf_idx", "driedbeans_idx", "driedbeans_norm_idx", "driedbeans_ecdf_idx", "drieddates_idx", "drieddates_norm_idx", "drieddates_ecdf_idx", "favabeans_idx", "favabeans_norm_idx", "favabeans_ecdf_idx", "garbanzo_idx", "garbanzo_norm_idx", "garbanzo_ecdf_idx", "lentils_idx", "lentils_norm_idx", "lentils_ecdf_idx", "basmati_idx", "basmati_norm_idx", "basmati_ecdf_idx", "pasta_idx", "pasta_norm_idx", "pasta_ecdf_idx", "teff_idx", "teff_norm_idx", "teff_ecdf_idx", "tomatosauce_idx", "tomatosauce_norm_idx", "tomatosauce_ecdf_idx", "tuna_idx", "tuna_norm_idx", "tuna_ecdf_idx"],
+      "file": "va_013_cabg_sdad_2021_latino_east_african_gravity_models.csv.xz",
+      "size": 166868,
+      "md5": "74316669ccc3dfbe42d05dd7eb393d91"
+    },
+    {
+      "name": "supermarket_drive_times",
+      "variables": ["median_drive_time_top5", "mean_drive_time_top5", "median_drive_time_top10", "mean_drive_time_top10"],
+      "file": "va_cttr_osrm_2021_supermarket_drive_times.csv.xz",
+      "size": 50480,
+      "md5": "09f762f703fd71a6351252765ac559bc"
+    }
+  ],
+  "distributions": []
+}
