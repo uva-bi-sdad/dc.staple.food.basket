@@ -88,5 +88,491 @@
         "date_accessed": "2021"
       }
     ]
+  },
+    "latino_east_african_gravity_models:beets_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:beets_ecdf_idx",
+    "measure": "beets_ecdf_idx",
+    "type": "float",
+    "short_name": "Beet access score",
+    "long_name": "Beet access score (Empirical cumulative density function)",
+    "short_description": "Beet access score by item availability using an empirical cumulative density function",
+    "long_description": "Beet access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Beet is defined as a Latino staple food by The Food Group",
+    "statement": "The beet access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:blackbeans_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:blackbeans_ecdf_idx",
+    "measure": "blackbeans_ecdf_idx",
+    "type": "float",
+    "short_name": "Black bean access score",
+    "long_name": "Black bean access score (Empirical cumulative density function)",
+    "short_description": "Black bean access score by item availability using an empirical cumulative density function",
+    "long_description": "Black bean access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Black bean is defined as a Latino staple food by The Food Group",
+    "statement": "The black bean access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:cheese_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:cheese_ecdf_idx",
+    "measure": "cheese_ecdf_idx",
+    "type": "float",
+    "short_name": "Cheese access score",
+    "long_name": "Cheese access score (Empirical cumulative density function)",
+    "short_description": "Cheese access score by item availability using an empirical cumulative density function",
+    "long_description": "Cheese access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Cheese is defined as a Latino staple food by The Food Group",
+    "statement": "The cheese access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:corntortillas_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:corntortillas_ecdf_idx",
+    "measure": "corntortillas_ecdf_idx",
+    "type": "float",
+    "short_name": "Corn tortilla access score",
+    "long_name": "Corn tortilla access score (Empirical cumulative density function)",
+    "short_description": "Corn tortilla access score by item availability using an empirical cumulative density function",
+    "long_description": "Corn tortilla access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Corn tortilla is defined as a Latino staple food by The Food Group",
+    "statement": "The corn tortilla access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:crackers_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:crackers_ecdf_idx",
+    "measure": "crackers_ecdf_idx",
+    "type": "float",
+    "short_name": "Cracker access score",
+    "long_name": "Cracker access score (Empirical cumulative density function)",
+    "short_description": "Cracker access score by item availability using an empirical cumulative density function",
+    "long_description": "Cracker access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Cracker is defined as a Latino staple food by The Food Group",
+    "statement": "The cracker access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:greenchiles_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:greenchiles_ecdf_idx",
+    "measure": "greenchiles_ecdf_idx",
+    "type": "float",
+    "short_name": "Green chile access score",
+    "long_name": "Green chile access score (Empirical cumulative density function)",
+    "short_description": "Green chile access score by item availability using an empirical cumulative density function",
+    "long_description": "Green chile access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Green chile is defined as a Latino staple food by The Food Group",
+    "statement": "The green chile access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:jalapenos_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:jalapenos_ecdf_idx",
+    "measure": "jalapenos_ecdf_idx",
+    "type": "float",
+    "short_name": "Jalapeno access score",
+    "long_name": "Jalapeno access score (Empirical cumulative density function)",
+    "short_description": "Jalapeno access score by item availability using an empirical cumulative density function",
+    "long_description": "Jalapeno access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Jalapeno is defined as a Latino staple food by The Food Group",
+    "statement": "The jalapeno access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:legumes_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:legumes_ecdf_idx",
+    "measure": "legumes_ecdf_idx",
+    "type": "float",
+    "short_name": "Legume access score",
+    "long_name": "Legume access score (Empirical cumulative density function)",
+    "short_description": "Legume access score by item availability using an empirical cumulative density function",
+    "long_description": "Legume access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Legume is defined as a Latino staple food by The Food Group",
+    "statement": "The legume access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:masa_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:masa_ecdf_idx",
+    "measure": "masa_ecdf_idx",
+    "type": "float",
+    "short_name": "Masa access score",
+    "long_name": "Masa access score (Empirical cumulative density function)",
+    "short_description": "Masa access score by item availability using an empirical cumulative density function",
+    "long_description": "Masa access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Masa is defined as a Latino staple food by The Food Group",
+    "statement": "The masa access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:mixedfruit_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:mixedfruit_ecdf_idx",
+    "measure": "mixedfruit_ecdf_idx",
+    "type": "float",
+    "short_name": "Mixed fruit access score",
+    "long_name": "Mixed fruit access score (Empirical cumulative density function)",
+    "short_description": "Mixed fruit access score by item availability using an empirical cumulative density function",
+    "long_description": "Mixed fruit access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Mixed fruit is defined as a Latino staple food by The Food Group",
+    "statement": "The mixed fruit access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:peppers_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:peppers_ecdf_idx",
+    "measure": "peppers_ecdf_idx",
+    "type": "float",
+    "short_name": "Pepper access score",
+    "long_name": "Pepper access score (Empirical cumulative density function)",
+    "short_description": "Pepper access score by item availability using an empirical cumulative density function",
+    "long_description": "Pepper access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Pepper is defined as a Latino staple food by The Food Group",
+    "statement": "The pepper access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:pintobeans_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:pintobeans_ecdf_idx",
+    "measure": "pintobeans_ecdf_idx",
+    "type": "float",
+    "short_name": "Pinto bean access score",
+    "long_name": "Pinto bean access score (Empirical cumulative density function)",
+    "short_description": "Pinto bean access score by item availability using an empirical cumulative density function",
+    "long_description": "Pinto bean access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Pinto bean is defined as a Latino staple food by The Food Group",
+    "statement": "The pinto bean access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:rice_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:rice_ecdf_idx",
+    "measure": "rice_ecdf_idx",
+    "type": "float",
+    "short_name": "Rice access score",
+    "long_name": "Rice access score (Empirical cumulative density function)",
+    "short_description": "Rice access score by item availability using an empirical cumulative density function",
+    "long_description": "Rice access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Rice is defined as a Latino staple food by The Food Group",
+    "statement": "The Rice access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:salsa_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:salsa_ecdf_idx",
+    "measure": "salsa_ecdf_idx",
+    "type": "float",
+    "short_name": "Salsa access score",
+    "long_name": "Salsa access score (Empirical cumulative density function)",
+    "short_description": "Salsa access score by item availability using an empirical cumulative density function",
+    "long_description": "Salsa access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Salsa is defined as a Latino staple food by The Food Group",
+    "statement": "The salsa access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:squash_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:squash_ecdf_idx",
+    "measure": "squash_ecdf_idx",
+    "type": "float",
+    "short_name": "Squash access score",
+    "long_name": "Squash access score (Empirical cumulative density function)",
+    "short_description": "Squash access score by item availability using an empirical cumulative density function",
+    "long_description": "Squash access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Squash is defined as a Latino staple food by The Food Group",
+    "statement": "The squash access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:tomatoes_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:tomatoes_ecdf_idx",
+    "measure": "tomatoes_ecdf_idx",
+    "type": "float",
+    "short_name": "Tomato access score",
+    "long_name": "Tomato access score (Empirical cumulative density function)",
+    "short_description": "Tomato access score by item availability using an empirical cumulative density function",
+    "long_description": "Tomato access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Tomato is defined as a Latino staple food by The Food Group",
+    "statement": "The tomato access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:barley_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:barley_ecdf_idx",
+    "measure": "barley_ecdf_idx",
+    "type": "float",
+    "short_name": "Barley access score",
+    "long_name": "Barley access score (Empirical cumulative density function)",
+    "short_description": "Barley access score by item availability using an empirical cumulative density function",
+    "long_description": "Barley access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Barley is defined as an East African staple food by The Food Group",
+    "statement": "The barley access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:currypowder_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:currypowder_ecdf_idx",
+    "measure": "currypowder_ecdf_idx",
+    "type": "float",
+    "short_name": "Curry powder access score",
+    "long_name": "Curry powder access score (Empirical cumulative density function)",
+    "short_description": "Curry powder access score by item availability using an empirical cumulative density function",
+    "long_description": "Curry powder access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Curry powder is defined as an East African staple food by The Food Group",
+    "statement": "The curry powder access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:blackeyepeas_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:blackeyepeas_ecdf_idx",
+    "measure": "blackeyepeas_ecdf_idx",
+    "type": "float",
+    "short_name": "Black eyed pea access score",
+    "long_name": "Blacked eyed pea access score (Empirical cumulative density function)",
+    "short_description": "Black eyed pea access score by item availability using an empirical cumulative density function",
+    "long_description": "Black eyed pea access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Black eyed pea is defined as an East African staple food by The Food Group",
+    "statement": "The black eyed pea access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:driedbeans_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:driedbeans_ecdf_idx",
+    "measure": "driedbeans_ecdf_idx",
+    "type": "float",
+    "short_name": "Dried bean access score",
+    "long_name": "Dried bean access score (Empirical cumulative density function)",
+    "short_description": "Dried bean access score by item availability using an empirical cumulative density function",
+    "long_description": "Dried bean access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Dried bean is defined as an East African staple food by The Food Group",
+    "statement": "The dried bean access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:drieddates_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:drieddates_ecdf_idx",
+    "measure": "drieddates_ecdf_idx",
+    "type": "float",
+    "short_name": "Dried date access score",
+    "long_name": "Dried date access score (Empirical cumulative density function)",
+    "short_description": "Dried date access score by item availability using an empirical cumulative density function",
+    "long_description": "Dried date access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Dried date is defined as an East African staple food by The Food Group",
+    "statement": "The tomatillo access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:garbanzo_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:garbanzo_ecdf_idx",
+    "measure": "garbanzo_ecdf_idx",
+    "type": "float",
+    "short_name": "Garbanzo bean access score",
+    "long_name": "Garbanzo bean access score (Empirical cumulative density function)",
+    "short_description": "Garbanzo bean access score by item availability using an empirical cumulative density function",
+    "long_description": "Garbanzo bean access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Garbanzo bean is defined as an East African staple food by The Food Group",
+    "statement": "The garbanzo bean access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:lentils_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:lentils_ecdf_idx",
+    "measure": "lentils_ecdf_idx",
+    "type": "float",
+    "short_name": "Lentil access score",
+    "long_name": "Lentil access score (Empirical cumulative density function)",
+    "short_description": "Lentil access score by item availability using an empirical cumulative density function",
+    "long_description": "Lentil access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Lentil is defined as an East African staple food by The Food Group",
+    "statement": "The lentil access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:basmati_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:basmati_ecdf_idx",
+    "measure": "basmati_ecdf_idx",
+    "type": "float",
+    "short_name": "Basmati rice access score",
+    "long_name": "Basmati rice access score (Empirical cumulative density function)",
+    "short_description": "Basmati rice access score by item availability using an empirical cumulative density function",
+    "long_description": "Basmati rice access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Basmati rice is defined as an East African staple food by The Food Group",
+    "statement": "The basmati rice access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:pasta_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:pasta_ecdf_idx",
+    "measure": "pasta_ecdf_idx",
+    "type": "float",
+    "short_name": "Pasta access score",
+    "long_name": "Pasta access score (Empirical cumulative density function)",
+    "short_description": "Pasta access score by item availability using an empirical cumulative density function",
+    "long_description": "Pasta access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Pasta is defined as an East African staple food by The Food Group",
+    "statement": "The pasta access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:tomatosauce_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:tomatosauce_ecdf_idx",
+    "measure": "tomatosauce_ecdf_idx",
+    "type": "float",
+    "short_name": "Tomato sauce access score",
+    "long_name": "Tomato sauce access score (Empirical cumulative density function)",
+    "short_description": "Tomato sauce access score by item availability using an empirical cumulative density function",
+    "long_description": "Tomato sauce access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Tomato sauce is defined as an East African staple food by The Food Group",
+    "statement": "The tomato sauce access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
+  },
+    "latino_east_african_gravity_models:tuna_ecdf_idx": {
+    "category": "Nutrition and Food Security",
+    "measure_table": "latino_east_african_gravity_models",
+    "full_name": "latino_east_african_gravity_models:tuna_ecdf_idx",
+    "measure": "tuna_ecdf_idx",
+    "type": "float",
+    "short_name": "Tuna access score",
+    "long_name": "Tuna access score (Empirical cumulative density function)",
+    "short_description": "Tuna access score by item availability using an empirical cumulative density function",
+    "long_description": "Tuna access score by item availability using an empirical cumulative density function. Item availbility determined by webscraping grocery retailer with an online presence. Tuna is defined as an East African staple food by The Food Group",
+    "statement": "The tuna access score in {features.name} is {value}.",
+    "sources": [
+      {
+        "name": "Grocery Retailers with Online Presence",
+        "date_accessed": "2021"
+      }
+    ]
   }
 }
