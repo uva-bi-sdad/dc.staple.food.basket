@@ -494,7 +494,7 @@ make_arlington_plot(nopalito.access, latinx.data$item.12, "Nopalito Access")
 # re-do at civic association level
 
 ```{r}
-con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+con <- get_db_conn()
 ar_civic_associations <- st_read(con, query = "SELECT * FROM dc_geographies.va_013_arl_2020_civic_associations")
 dbDisconnect(con)
 
@@ -807,7 +807,7 @@ all.access.final.ca <- all.access.all %>%
   rename(region_name = LABEL, geoid = GIS_ID) %>% 
   relocate("geoid", "region_type", "region_name", "year", "measure", "value", "measure_type", "measure_units")
 
-# con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+# con <- get_db_conn()
 # dc_dbWriteTable(con, "dc_working", "va_013_civic_sdad_2021_latino_basket_gravity_model", all.access.final.ca)
 # dbDisconnect(con)
 ```
@@ -908,7 +908,7 @@ all.access.final.bg <- b.all.access.all %>%
   relocate("geoid", "region_type", "region_name", "year", "measure", "value", "measure_type", "measure_units")
 
 ## send to db
-# con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+# con <- get_db_conn()
 # dc_dbWriteTable(con, "dc_working", "va_013_bg_sdad_2021_latino_basket_gravity_model", all.access.final.bg)
 # dbDisconnect(con)
 ```
@@ -1372,7 +1372,7 @@ all.access.final.ca <- all.access.all %>%
   rename(region_name = LABEL, geoid = GIS_ID) %>% 
   relocate("geoid", "region_type", "region_name", "year", "measure", "value", "measure_type", "measure_units")
 
-# con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+# con <- get_db_conn()
 # dc_dbWriteTable(con, "dc_working", "va_013_civic_sdad_2021_east_african_basket_gravity_model", all.access.final.ca)
 # dbDisconnect(con)
 ```
@@ -1457,7 +1457,7 @@ all.access.final.bg <- b.all.access.all %>%
   rename(region_name = NAME, geoid = GEOID) %>% 
   relocate("geoid", "region_type", "region_name", "year", "measure", "value", "measure_type", "measure_units")
 
-# con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+# con <- get_db_conn()
 # dc_dbWriteTable(con, "dc_working", "va_013_bg_sdad_2021_east_african_basket_gravity_model", all.access.final.bg)
 # dbDisconnect(con)
 ```
@@ -1465,7 +1465,7 @@ all.access.final.bg <- b.all.access.all %>%
 # correct the formatting of neighborhoods with the update
 
 ```{r}
-con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+con <- get_db_conn()
 arl_bg_la_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_bg_sdad_2021_latino_basket_gravity_model")
 arl_ca_la_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_civic_sdad_2021_latino_basket_gravity_model")
 arl_bg_ea_basket <- st_read(con, query = "SELECT * FROM dc_working.va_013_bg_sdad_2021_east_african_basket_gravity_model")
@@ -1484,7 +1484,7 @@ arl_ca_ea_basket2 <- left_join(arl_ca_ea_basket, ca_names_csv[, c("region_name",
   select(-geoid.x) %>% rename(geoid = geoid.y) %>%
   relocate("geoid", "region_type", "region_name", "year", "measure", "value", "measure_type", "measure_units")
 
-# con <- get_db_conn(db_pass = "rsu8zvrsu8zv")
+# con <- get_db_conn()
 # dc_dbWriteTable(con, "dc_working", "va_013_civic_sdad_2021_latino_basket_gravity_model_update", arl_ca_la_basket2)
 # dc_dbWriteTable(con, "dc_working", "va_013_civic_sdad_2021_east_african_basket_gravity_model_update", arl_ca_ea_basket2)
 # dbDisconnect(con)
@@ -1492,5 +1492,15 @@ arl_ca_ea_basket2 <- left_join(arl_ca_ea_basket, ca_names_csv[, c("region_name",
 # length(unique(arl_ca_ea_basket2$measure))
 ```
 
+# change neighborhood names
 
- 
+```{r}
+map <- jsonlite::read_json("https://raw.githubusercontent.com/uva-bi-sdad/dc.geographies/main/data/va013_geo_arl_2021_civic_associations/distribution/va013_geo_arl_2021_civic_associations.geojson")
+name_map <- unlist(lapply(map$features, function(e)
+  structure(e$properties$geoid, names = e$properties$region_name)))
+data <- read.csv(gzfile("data/va_013_cabg_sdad_2021_latino_east_african_gravity_models.csv.xz"))
+data[data$region_name == "Chain Bridge Forest, Bridge, Forest", "region_name"] <- "Chain Bridge Forest"
+su <- data$region_name %in% names(name_map)
+data[su, "geoid"] <- name_map[data[su, "region_name"]]
+write.csv(data, xzfile("data/va_013_cabg_sdad_2021_latino_east_african_gravity_models.csv.xz"), row.names = FALSE)
+```
